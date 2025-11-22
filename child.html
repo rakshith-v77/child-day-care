@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Child Day Care - Children</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        a.button, button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 4px 0;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        a.button.delete {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+<h1>Child Day Care - Children</h1>
+
+<a href="/children/new" class="button">Add New Child</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Parent Name</th>
+        <th>Parent Contact</th>
+        <th>Enrolled Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="child : ${children}">
+        <td th:text="${child.id}">1</td>
+        <td th:text="${child.name}">Name</td>
+        <td th:text="${child.age}">4</td>
+        <td th:text="${child.parentName}">Parent</td>
+        <td th:text="${child.parentContact}">1234567890</td>
+        <td th:text="${child.enrolledDate}">2025-11-22</td>
+        <td>
+            <a th:href="@{'/children/edit/' + ${child.id}}" class="button">Edit</a>
+            <a th:href="@{'/children/delete/' + ${child.id}}"
+               class="button delete"
+               onclick="return confirm('Delete this record?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
